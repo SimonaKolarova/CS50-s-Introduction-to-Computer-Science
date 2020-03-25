@@ -4,8 +4,8 @@
 int main(void)
 // User input
 {
-int n;
-do 
+    int n;
+    do 
 {
     n = get_int("Height: ");
 }
@@ -16,19 +16,19 @@ for (int i = 0; i < n; i++)
 // make integer m - resiprocal to n 
   int m = n -1 -i;
 // print m-related spaces
-   for (int j = 0; j < m ; j++ )
+   for (int j = 0; j < m ; j++)
    { 
-       printf(" ");
+            printf(" ");
    }
 // print n-related #
-   for (int j = 0; j <= i ; j++ )
+   for (int j = 0; j <= i ; j++)
    { 
        printf("#");
    }
 // print middle spaces
    printf("  ");
 // print n-related #
-    for (int j = 0; j <= i ; j++ )
+    for (int j = 0; j <= i ; j++)
    { 
        printf("#");
    }
