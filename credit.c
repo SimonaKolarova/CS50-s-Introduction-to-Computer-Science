@@ -33,7 +33,7 @@ int main(void)
             printf("INVALID\n");
         }
     }
-        else
+    else
     {
         printf("INVALID\n");
     }
