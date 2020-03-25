@@ -36,6 +36,10 @@ if (sum % 10 == 0)
     {
         printf("VISA\n");
     }
+    else
+    {
+        printf("INVALID\n");
+    }
 }
 else
 {
