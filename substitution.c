@@ -9,7 +9,7 @@ int main(int argc, string argv[])
     if (argc != 2)
     {
         printf("Use a single command-line argument\n");
-        return(1);
+        return (1);
     }
 
 // Check if key contains only letters and each letter only once, make cypher uppercase
@@ -27,14 +27,14 @@ int main(int argc, string argv[])
         }
         else
         {
-           printf("Your key must contain only letters\n");
-           return(1);
+            printf("Your key must contain only letters\n");
+            return (1);
         }
     }
     if (sum_key != 2015)
     {
         printf("Your key must contain 26 letters and each letter only once\n");
-        return(1);
+        return (1);
     }
 
 // Check for repeating letters
@@ -47,7 +47,7 @@ int main(int argc, string argv[])
                 if (argv[1][i] == argv[1][j])
                 {
                     printf("Your key must contain each letter only once\n");
-                    return(1);
+                    return (1);
                 }
             }
         }
@@ -55,10 +55,10 @@ int main(int argc, string argv[])
     }
 
 // Get user input
-    string plaintext  = get_string ("plaintext: ");
+    string plaintext  = get_string("plaintext: ");
 
 // Transform user input
-    printf ("ciphertext: ");
+    printf("ciphertext: ");
     string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (int i = 0, n = strlen(plaintext); i < n; i++)
     {
@@ -89,6 +89,6 @@ int main(int argc, string argv[])
         }
     }
     printf("\n");
-    return(0);
+    return (0);
 }
 
