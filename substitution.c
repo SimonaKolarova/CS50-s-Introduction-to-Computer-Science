@@ -37,6 +37,23 @@ int main(int argc, string argv[])
         return(1);
     }
 
+// Check for repeating letters
+    for (int i = 0; i < 26; i++)
+    {
+        for (int j = 0; j < 26; j++)
+        {
+            if (i != j)
+            {
+                if (argv[1][i] == argv[1][j])
+                {
+                    printf("Your key must contain each letter only once\n");
+                    return(1);
+                }
+            }
+        }
+
+    }
+
 // Get user input
     string plaintext  = get_string ("plaintext: ");
 
