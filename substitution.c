@@ -46,7 +46,7 @@ int main(int argc, string argv[])
     string plaintext  = get_string ("plaintext: ");
 
 // Transform user input
-    printf ("cyphertext: ");
+    printf ("ciphertext: ");
     string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (int i = 0, n = strlen(plaintext); i < n; i++)
     {
