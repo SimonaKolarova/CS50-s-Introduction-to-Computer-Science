@@ -11,9 +11,8 @@ int main(int argc, string argv[])
         printf("Use a single command-line argument\n");
         return(1);
     }
-    else {}
 
-// Check if key contains only letters and each letter only once; Make cypher uppercase
+// Check if key contains only letters and each letter only once, make cypher uppercase
     int sum_key = 0;
     for (int i = 0, n = strlen(argv[1]); i < n; i++)
     {
@@ -37,10 +36,6 @@ int main(int argc, string argv[])
         printf("Your key must contain 26 letters and each letter only once\n");
         return(1);
     }
-    else{}
-
-    printf("Your key is: %s\n", argv[1]);
-
 
 // Get user input
     string plaintext  = get_string ("plaintext: ");
@@ -77,5 +72,6 @@ int main(int argc, string argv[])
         }
     }
     printf("\n");
+    return(0);
 }
 
