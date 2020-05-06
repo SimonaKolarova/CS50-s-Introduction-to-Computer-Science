@@ -138,7 +138,7 @@ bool vote(int voter, int rank, string name)
             return true;
         }
     }
-return false;
+    return false;
 }
 
 // Tabulate votes for non-eliminated candidates
@@ -157,16 +157,16 @@ void tabulate(void)
             // Loop over all candidates
             for (int k = 0; k < candidate_count; k++)
             {
-               // Compare voter preference to candidate index, check if candidate is eliminated and cast a vote if non has been casted by voter i
-               if ((preferences[i][j] == k) && (!candidates[k].eliminated) && (votes_casted == 0))
-               {
+                // Compare voter preference to candidate index, check if candidate is eliminated and cast a vote if non has been casted by voter i
+                if ((preferences[i][j] == k) && (!candidates[k].eliminated) && (votes_casted == 0))
+                {
                     candidates[k].votes++;
                     votes_casted++;
                 }
             }
         }
     }
-return;
+    return;
 }
 
 // Print the winner of the election, if there is one
@@ -176,7 +176,7 @@ bool print_winner(void)
     for (int i = 0; i < candidate_count; i++)
     {
         // Check if any candidate has a majority
-        if (candidates[i].votes > voter_count/2)
+        if (candidates[i].votes > voter_count / 2)
         {
             printf("%s\n", candidates[i].name);
             return true;
