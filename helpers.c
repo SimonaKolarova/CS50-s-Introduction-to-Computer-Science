@@ -66,20 +66,42 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Loop over each pixel on the left-hand side of the image
-    for (int i = 0; i < height; i++)
+     if (width % 2 ==0)
     {
-        for (int k = 0; k <= width/2; k++)
+    // Loop over each pixel on the left-hand side of the image
+        for (int i = 0; i < height; i++)
         {
-            // Calculate width of reflected pixel
-            int newk = width - k - 1;
+            for (int k = 0; k <= width/2; k++)
+            {
+                // Calculate width of reflected pixel
+                int newk = width - k;
+    
+                // Save original RGB values
+                RGBTRIPLE temp = image[i][k];
 
-            // Save original RGB values
-            RGBTRIPLE temp = image[i][k];
+                // Adjust colour
+                image[i][k] = image[i][newk];
+                image[i][newk] = temp;
+            }
+        }
+    }
+    else if (width % 2 !=0)
+    {
+    // Loop over each pixel on the left-hand side of the image
+        for (int i = 0; i < height; i++)
+        {
+            for (int k = 0; k <= width/2; k++)
+            {
+                // Calculate width of reflected pixel
+                int newk = width - k - 1;
+    
+                // Save original RGB values
+                RGBTRIPLE temp = image[i][k];
 
-            // Adjust colour
-            image[i][k] = image[i][newk];
-            image[i][newk] = temp;
+                // Adjust colour
+                image[i][k] = image[i][newk];
+                image[i][newk] = temp;
+            }
         }
     }
     return;
