@@ -3,6 +3,7 @@
 #include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -13,12 +14,12 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         for (int k = 0; k < width; k++)
         {
             // Calculate average brithness
-            float gray = ((float) image[i][k].rgbtRed) + ((float) image[i][k].rgbtGreen) + ((float) image[i][k].rgbtBlue))/3;
+            float gray = (image[i][k].rgbtRed + image[i][k].rgbtGreen + image[i][k].rgbtBlue)/3;
 
             // Assign average brightness to all RGB values
-            image[i][k].rgbtRed = (int) gray;
-            image[i][k].rgbtGreen = (int) gray;
-            image[i][k].rgbtBlue = (int) gray;
+            image[i][k].rgbtRed = round(gray);
+            image[i][k].rgbtGreen = round(gray);
+            image[i][k].rgbtBlue = round(gray);
         }
     }
     return;
