@@ -171,9 +171,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 image[i][k].rgbtBlue = (float) (imagetemp[i-1][k-1].rgbtBlue + imagetemp[i-1][k].rgbtBlue + imagetemp[i-1][k+1].rgbtBlue + imagetemp[i][k-1].rgbtBlue + imagetemp[i][k].rgbtBlue + imagetemp[i][k+1].rgbtBlue + imagetemp[i+1][k-1].rgbtBlue + imagetemp[i+1][k].rgbtBlue + imagetemp[i+1][k+1].rgbtBlue)/9;
             }
             // Round all RGB values to integers
-                image[i][k].rgbtRed = (round(image[i][k].rgbtRed);
-                image[i][k].rgbtGreen = (round(image[i][k].rgbtGreen);
-                image[i][k].rgbtBlue = (round(image[i][k].rgbtBlue);
+                image[i][k].rgbtRed = round(image[i][k].rgbtRed);
+                image[i][k].rgbtGreen = round(image[i][k].rgbtGreen);
+                image[i][k].rgbtBlue = round(image[i][k].rgbtBlue);
         }
     }
     free (imagetemp);
