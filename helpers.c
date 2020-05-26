@@ -74,7 +74,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             for (int k = 0; k <= width/2; k++)
             {
                 // Calculate width of reflected pixel
-                int newk = width - k;
+                int newk = width - k - 2;
     
                 // Save original RGB values
                 RGBTRIPLE temp = image[i][k];
