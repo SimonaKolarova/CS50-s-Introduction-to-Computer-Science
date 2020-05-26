@@ -128,76 +128,91 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int k = 0; k < width; k++)
         {
-            // Make RGB values floats
-                (float) image[i][k].rgbtRed = (float) image[i][k].rgbtRed;
-                (float) image[i][k].rgbtGreen = (float) image[i][k].rgbtGreen;
-                (float) image[i][k].rgbtBlue = (float) image[i][k].rgbtBlue;
+            // Make RGB  floats
+            float Red = (float) imagetemp[i][k].rgbtRed;
+            float Green = (float) imagetemp[i][k].rgbtGreen;
+            float Blue = (float) imagetemp[i][k].rgbtBlue;
+
+            // Add all neighbouring pixels within image bounds
+            if (i != 0 && k != 0)
+            {
+                Red += (float) imagetemp[i-1][k-1].rgbtRed;
+                Green += (float) imagetemp[i-1][k-1].rgbtGreen;
+                Blue += (float) imagetemp[i-1][k-1].rgbtBlue;
+
+                Red += (float) imagetemp[i-1][k].rgbtRed;
+                Green += (float)  imagetemp[i-1][k].rgbtGreen;
+                Blue += (float) imagetemp[i-1][k].rgbtBlue;
+
+                Red += (float) imagetemp[i][k-1].rgbtRed;
+                Green += (float) imagetemp[i][k-1].rgbtGreen;
+                Blue += (float) imagetemp[i][k-1].rgbtBlue;
+            }
+
+            if (i != height && k != width)
+            {
+                Red += (float) imagetemp[i][k+1].rgbtRed;
+                Green += (float) imagetemp[i][k+1].rgbtGreen;
+                Blue += (float) imagetemp[i][k+1].rgbtBlue;
+
+                Red += (float) imagetemp[i+1][k].rgbtRed;
+                Green += (float) imagetemp[i+1][k].rgbtGreen;
+                Blue += (float) imagetemp[i+1][k].rgbtBlue;
+
+                Red += (float) imagetemp[i+1][k+1].rgbtRed;
+                Green += (float) imagetemp[i+1][k+1].rgbtGreen;
+                Blue += (float) imagetemp[i+1][k+1].rgbtBlue;
+            }
+
+            if (i != 0 && k != width)
+            {
+                Red += (float) imagetemp[i-1][k+1].rgbtRed;
+                Green += (float) imagetemp[i-1][k+1].rgbtGreen;
+                Blue += (float) imagetemp[i-1][k+1].rgbtBlue;
+
+            }
+            if (i != height && k != 0)
+            {
+                Red += (float) imagetemp[i+1][k-1].rgbtRed;
+                Green += (float) imagetemp[i+1][k-1].rgbtGreen;
+                Blue += (float) imagetemp[i+1][k-1].rgbtBlue;
+            }
+
             // Average target pixel value depending on number of added pixels
 
             // Case 1: corner pixels
-            if ((i == 0) && (k == 0))
+            if ((i == 0 || i == height) && (k == 0 || k== width))
             {
-                image[i][k].rgbtRed = (float) (imagetemp[i][k].rgbtRed + imagetemp[i][k+1].rgbtRed + imagetemp[i+1][k].rgbtRed + imagetemp[i+1][k+1].rgbtRed) / 4;
-                image[i][k].rgbtGreen = (float) (imagetemp[i][k].rgbtGreen + imagetemp[i][k+1].rgbtGreen + imagetemp[i+1][k].rgbtGreen + imagetemp[i+1][k+1].rgbtGreen) / 4;
-                image[i][k].rgbtBlue = (float) (imagetemp[i][k].rgbtBlue + imagetemp[i][k+1].rgbtBlue + imagetemp[i+1][k].rgbtBlue + imagetemp[i+1][k+1].rgbtBlue) / 4;
+                Red /= 4;
+                Green /= 4;
+                Blue /= 4;
             }
 
-            else if ((i == 0) && (k == width - 1))
-            {
-                image[i][k].rgbtRed = (float) (imagetemp[i][k-1].rgbtRed + imagetemp[i][k].rgbtRed + imagetemp[i+1][k-1].rgbtRed + imagetemp[i+1][k].rgbtRed) / 4;
-                image[i][k].rgbtGreen = (float) (imagetemp[i][k-1].rgbtGreen + imagetemp[i][k].rgbtGreen + imagetemp[i+1][k-1].rgbtGreen + imagetemp[i+1][k].rgbtGreen) / 4;
-                image[i][k].rgbtBlue = (float) (imagetemp[i][k-1].rgbtBlue + imagetemp[i][k].rgbtBlue + imagetemp[i+1][k-1].rgbtBlue + imagetemp[i+1][k].rgbtBlue) / 4;
-            }
-
-            else if ((i == height - 1) && (k == 0))
-            {
-                image[i][k].rgbtRed = (float) (imagetemp[i-1][k].rgbtRed + imagetemp[i][k].rgbtRed + imagetemp[i-1][k+1].rgbtRed + imagetemp[i][k+1].rgbtRed) / 4;
-                image[i][k].rgbtGreen = (float) (imagetemp[i-1][k].rgbtGreen + imagetemp[i][k].rgbtGreen + imagetemp[i-1][k+1].rgbtGreen + imagetemp[i][k+1].rgbtGreen) / 4;
-                image[i][k].rgbtBlue = (float) (imagetemp[i-1][k].rgbtBlue + imagetemp[i][k].rgbtBlue + imagetemp[i-1][k+1].rgbtBlue + imagetemp[i][k+1].rgbtBlue) / 4;
-            }
-            else if ((i == height-1) && (k == width-1))
-            {
-                image[i][k].rgbtRed = (float) (imagetemp[i-1][k-1].rgbtRed + imagetemp[i-1][k].rgbtRed + imagetemp[i][k].rgbtRed + imagetemp[i][k-1].rgbtRed) / 4;
-                image[i][k].rgbtGreen = (float) (imagetemp[i-1][k-1].rgbtGreen + imagetemp[i-1][k].rgbtGreen + imagetemp[i][k].rgbtGreen + imagetemp[i][k-1].rgbtGreen) / 4;
-                image[i][k].rgbtBlue = (float) (imagetemp[i-1][k-1].rgbtBlue + imagetemp[i-1][k].rgbtBlue + imagetemp[i][k].rgbtBlue + imagetemp[i][k-1].rgbtBlue) / 4;
-            }
             // Case 2: edge pixels
-            else if (i == 0 && k > 0 && k < width-1)
-            {
-                image[i][k].rgbtRed = (float) (imagetemp[i][k-1].rgbtRed + imagetemp[i][k].rgbtRed + imagetemp[i][k+1].rgbtRed + imagetemp[i+1][k-1].rgbtRed + imagetemp[i+1][k].rgbtRed + imagetemp[i+1][k+1].rgbtRed) / 6;
-                image[i][k].rgbtGreen = (float) (imagetemp[i][k-1].rgbtGreen + imagetemp[i][k].rgbtGreen + imagetemp[i][k+1].rgbtGreen + imagetemp[i+1][k-1].rgbtGreen + imagetemp[i+1][k].rgbtGreen + imagetemp[i+1][k+1].rgbtGreen) / 6;
-                image[i][k].rgbtBlue = (float) (imagetemp[i][k-1].rgbtBlue + imagetemp[i][k].rgbtBlue + imagetemp[i][k+1].rgbtBlue + imagetemp[i+1][k-1].rgbtBlue + imagetemp[i+1][k].rgbtBlue + imagetemp[i+1][k+1].rgbtBlue) / 6;
-            }
-            else if (i == height - 1 && k > 0 && k < width - 1)
-            {
-                image[i][k].rgbtRed = (float) (imagetemp[i-1][k-1].rgbtRed + imagetemp[i-1][k].rgbtRed + imagetemp[i-1][k+1].rgbtRed + imagetemp[i][k-1].rgbtRed + imagetemp[i][k].rgbtRed + imagetemp[i][k+1].rgbtRed) / 6;
-                image[i][k].rgbtGreen = (float) (imagetemp[i-1][k-1].rgbtGreen + imagetemp[i-1][k].rgbtGreen + imagetemp[i-1][k+1].rgbtGreen + imagetemp[i][k-1].rgbtGreen + imagetemp[i][k].rgbtGreen + imagetemp[i][k+1].rgbtGreen) / 6;
-                image[i][k].rgbtBlue = (float) (imagetemp[i-1][k-1].rgbtBlue + imagetemp[i-1][k].rgbtBlue + imagetemp[i-1][k+1].rgbtBlue + imagetemp[i][k-1].rgbtBlue + imagetemp[i][k].rgbtBlue + imagetemp[i][k+1].rgbtBlue) / 6;
-            }
-            if (k == 0 && i > 0 && i < height - 1)
-            {
-                image[i][k].rgbtRed = (float) (imagetemp[i-1][k].rgbtRed + imagetemp[i-1][k+1].rgbtRed + imagetemp[i][k].rgbtRed + imagetemp[i][k+1].rgbtRed + imagetemp[i+1][k].rgbtRed + imagetemp[i+1][k+1].rgbtRed) / 6;
-                image[i][k].rgbtGreen = (float) (imagetemp[i-1][k].rgbtGreen + imagetemp[i-1][k+1].rgbtGreen + imagetemp[i][k].rgbtGreen + imagetemp[i][k+1].rgbtGreen + imagetemp[i+1][k].rgbtGreen + imagetemp[i+1][k+1].rgbtGreen) / 6;
-                image[i][k].rgbtBlue = (float) (imagetemp[i-1][k].rgbtBlue + imagetemp[i-1][k+1].rgbtBlue + imagetemp[i][k].rgbtBlue + imagetemp[i][k+1].rgbtBlue + imagetemp[i+1][k].rgbtBlue + imagetemp[i+1][k+1].rgbtBlue) / 6;
-            }
-            else if (k == width - 1 && i > 0 && i < height - 1)
-            {
-                image[i][k].rgbtRed = (float) (imagetemp[i-1][k-1].rgbtRed + imagetemp[i-1][k].rgbtRed + imagetemp[i][k-1].rgbtRed + imagetemp[i][k].rgbtRed + imagetemp[i+1][k-1].rgbtRed + imagetemp[i+1][k].rgbtRed) / 6;
-                image[i][k].rgbtGreen = (float) (imagetemp[i-1][k-1].rgbtGreen + imagetemp[i-1][k].rgbtGreen  + imagetemp[i][k-1].rgbtGreen + imagetemp[i][k].rgbtGreen + imagetemp[i+1][k-1].rgbtGreen + imagetemp[i+1][k].rgbtGreen) / 6;
-                image[i][k].rgbtBlue = (float) (imagetemp[i-1][k-1].rgbtBlue + imagetemp[i-1][k].rgbtBlue + imagetemp[i][k-1].rgbtBlue + imagetemp[i][k].rgbtBlue + imagetemp[i+1][k-1].rgbtBlue + imagetemp[i+1][k].rgbtBlue) / 6;
-            }
+            if ((i == 0 || i == height) && (k > 0 && k < width))
 
-            // Case 3: body pixels
-            else if (i > 0 && i < height-1 && k > 0 && k < width-1)
             {
-                image[i][k].rgbtRed = (float) (imagetemp[i-1][k-1].rgbtRed + imagetemp[i-1][k].rgbtRed + imagetemp[i-1][k+1].rgbtRed + imagetemp[i][k-1].rgbtRed + imagetemp[i][k].rgbtRed + imagetemp[i][k+1].rgbtRed + imagetemp[i+1][k-1].rgbtRed + imagetemp[i+1][k].rgbtRed + imagetemp[i+1][k+1].rgbtRed) / 9;
-                image[i][k].rgbtGreen = (float) (imagetemp[i-1][k-1].rgbtGreen + imagetemp[i-1][k].rgbtGreen + imagetemp[i-1][k+1].rgbtGreen + imagetemp[i][k-1].rgbtGreen + imagetemp[i][k].rgbtGreen + imagetemp[i][k+1].rgbtGreen + imagetemp[i+1][k-1].rgbtGreen + imagetemp[i+1][k].rgbtGreen + imagetemp[i+1][k+1].rgbtGreen) / 9;
-                image[i][k].rgbtBlue = (float) (imagetemp[i-1][k-1].rgbtBlue + imagetemp[i-1][k].rgbtBlue + imagetemp[i-1][k+1].rgbtBlue + imagetemp[i][k-1].rgbtBlue + imagetemp[i][k].rgbtBlue + imagetemp[i][k+1].rgbtBlue + imagetemp[i+1][k-1].rgbtBlue + imagetemp[i+1][k].rgbtBlue + imagetemp[i+1][k+1].rgbtBlue) / 9;
+                Red /= 6;
+                Green /= 6;
+                Blue /= 6;
+            }
+            if ((i > 0 && i < height) && (k == 0 || k == width))
+            {
+                Red /= 6;
+                Green /= 6;
+                Blue /= 6;
+            }
+            // Case 3: body pixels
+            if (i > 0 &&  i < height && k > 0 && k < width)
+            {
+                Red /= 9;
+                Green /= 9;
+                Blue /= 9;
             }
             // Round all RGB values to integers
-                image[i][k].rgbtRed = round(image[i][k].rgbtRed);
-                image[i][k].rgbtGreen = round(image[i][k].rgbtGreen);
-                image[i][k].rgbtBlue = round(image[i][k].rgbtBlue);
+                image[i][k].rgbtRed = round(Red);
+                image[i][k].rgbtGreen = round(Green);
+                image[i][k].rgbtBlue = round(Blue);
         }
     }
     free (imagetemp);
