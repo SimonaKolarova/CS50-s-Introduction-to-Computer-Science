@@ -14,7 +14,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         for (int k = 0; k < width; k++)
         {
             // Calculate average brithness
-            float gray = (image[i][k].rgbtRed + image[i][k].rgbtGreen + image[i][k].rgbtBlue) / 3;
+            float gray = (float) (image[i][k].rgbtRed + image[i][k].rgbtGreen + image[i][k].rgbtBlue) / 3;
 
             // Assign average brightness to all RGB values
             image[i][k].rgbtRed = round(gray);
@@ -72,7 +72,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
         for (int k = 0; k <= width/2; k++)
         {
             // Calculate width of reflected pixel
-            int newk = width - k - 1;
+            int newk = width - k ;
 
             // Save original RGB values
             RGBTRIPLE temp = image[i][k];
