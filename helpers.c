@@ -136,52 +136,52 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             // Add all neighbouring pixels within image bounds
             if (i != 0 && k != 0)
             {
-                Red += (float) imagetemp[i-1][k-1].rgbtRed;
-                Green += (float) imagetemp[i-1][k-1].rgbtGreen;
-                Blue += (float) imagetemp[i-1][k-1].rgbtBlue;
+                Red += (float) imagetemp[i - 1][k - 1].rgbtRed;
+                Green += (float) imagetemp[i - 1][k - 1].rgbtGreen;
+                Blue += (float) imagetemp[i - 1][k - 1].rgbtBlue;
 
-                Red += (float) imagetemp[i-1][k].rgbtRed;
-                Green += (float)  imagetemp[i-1][k].rgbtGreen;
-                Blue += (float) imagetemp[i-1][k].rgbtBlue;
+                Red += (float) imagetemp[i - 1][k].rgbtRed;
+                Green += (float) imagetemp[i - 1][k].rgbtGreen;
+                Blue += (float) imagetemp[i - 1][k].rgbtBlue;
 
-                Red += (float) imagetemp[i][k-1].rgbtRed;
-                Green += (float) imagetemp[i][k-1].rgbtGreen;
-                Blue += (float) imagetemp[i][k-1].rgbtBlue;
+                Red += (float) imagetemp[i][k - 1].rgbtRed;
+                Green += (float) imagetemp[i][k - 1].rgbtGreen;
+                Blue += (float) imagetemp[i][k - 1].rgbtBlue;
             }
 
-            if (i != height && k != width)
+            if (i != height - 1 && k != width - 1)
             {
-                Red += (float) imagetemp[i][k+1].rgbtRed;
-                Green += (float) imagetemp[i][k+1].rgbtGreen;
-                Blue += (float) imagetemp[i][k+1].rgbtBlue;
+                Red += (float) imagetemp[i][k + 1].rgbtRed;
+                Green += (float) imagetemp[i][k + 1].rgbtGreen;
+                Blue += (float) imagetemp[i][k + 1].rgbtBlue;
 
-                Red += (float) imagetemp[i+1][k].rgbtRed;
-                Green += (float) imagetemp[i+1][k].rgbtGreen;
-                Blue += (float) imagetemp[i+1][k].rgbtBlue;
+                Red += (float) imagetemp[i + 1][k].rgbtRed;
+                Green += (float) imagetemp[i + 1][k].rgbtGreen;
+                Blue += (float) imagetemp[i + 1][k].rgbtBlue;
 
-                Red += (float) imagetemp[i+1][k+1].rgbtRed;
-                Green += (float) imagetemp[i+1][k+1].rgbtGreen;
-                Blue += (float) imagetemp[i+1][k+1].rgbtBlue;
+                Red += (float) imagetemp[i + 1][k + 1].rgbtRed;
+                Green += (float) imagetemp[i + 1][k + 1].rgbtGreen;
+                Blue += (float) imagetemp[i + 1][k + 1].rgbtBlue;
             }
 
-            if (i != 0 && k != width)
+            if (i != 0 && k != width - 1)
             {
-                Red += (float) imagetemp[i-1][k+1].rgbtRed;
-                Green += (float) imagetemp[i-1][k+1].rgbtGreen;
-                Blue += (float) imagetemp[i-1][k+1].rgbtBlue;
+                Red += (float) imagetemp[i - 1][k + 1].rgbtRed;
+                Green += (float) imagetemp[i - 1][k + 1].rgbtGreen;
+                Blue += (float) imagetemp[i - 1][k + 1].rgbtBlue;
 
             }
-            if (i != height && k != 0)
+            if (i != height - 1 && k != 0)
             {
-                Red += (float) imagetemp[i+1][k-1].rgbtRed;
-                Green += (float) imagetemp[i+1][k-1].rgbtGreen;
-                Blue += (float) imagetemp[i+1][k-1].rgbtBlue;
+                Red += (float) imagetemp[i + 1][k - 1].rgbtRed;
+                Green += (float) imagetemp[i + 1][k - 1].rgbtGreen;
+                Blue += (float) imagetemp[i + 1][k - 1].rgbtBlue;
             }
 
             // Average target pixel value depending on number of added pixels
 
             // Case 1: corner pixels
-            if ((i == 0 || i == height) && (k == 0 || k== width))
+            if ((i == 0 || i == height - 1) && (k == 0 || k== width - 1))
             {
                 Red /= 4;
                 Green /= 4;
@@ -189,21 +189,22 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // Case 2: edge pixels
-            if ((i == 0 || i == height) && (k > 0 && k < width))
+            if ((i == 0 || i == height - 1) && (k > 0 && k < width - 1))
 
             {
                 Red /= 6;
                 Green /= 6;
                 Blue /= 6;
             }
-            if ((i > 0 && i < height) && (k == 0 || k == width))
+            if ((i > 0 && i < height - 1) && (k == 0 || k == width - 1))
             {
                 Red /= 6;
                 Green /= 6;
                 Blue /= 6;
             }
+
             // Case 3: body pixels
-            if (i > 0 &&  i < height && k > 0 && k < width)
+            if (i > 0 &&  i < height - 1 && k > 0 && k < width - 1)
             {
                 Red /= 9;
                 Green /= 9;
