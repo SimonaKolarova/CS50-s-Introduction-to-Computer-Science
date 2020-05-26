@@ -34,30 +34,30 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
         for (int k = 0; k < width; k++)
         {
             // Calculate sepia red colour
-            int sepiaRed = (0.393 * image[i][k].rgbtRed) + (0.769 * image[i][k].rgbtGreen) + (0.189 * image[i][k].rgbtBlue);
+            float sepiaRed = (float) ((0.393 * image[i][k].rgbtRed) + (0.769 * image[i][k].rgbtGreen) + (0.189 * image[i][k].rgbtBlue));
             if (sepiaRed > 255)
             {
                 sepiaRed = 255;
             }
 
             // Calculate sepia  green colour
-            int sepiaGreen = (0.349 * image[i][k].rgbtRed) + (0.686 * image[i][k].rgbtGreen) + (0.168 * image[i][k].rgbtBlue);
+            float sepiaGreen = (float) ((0.349 * image[i][k].rgbtRed) + (0.686 * image[i][k].rgbtGreen) + (0.168 * image[i][k].rgbtBlue));
             if (sepiaGreen > 255)
             {
                 sepiaGreen = 255;
             }
 
             // Calculate sepia blue colour
-            int sepiaBlue = (0.272 * image[i][k].rgbtRed) + (0.534 * image[i][k].rgbtGreen) + (0.131 * image[i][k].rgbtBlue);
+            float sepiaBlue = (float) ((0.272 * image[i][k].rgbtRed) + (0.534 * image[i][k].rgbtGreen) + (0.131 * image[i][k].rgbtBlue));
             if (sepiaBlue > 255)
             {
                 sepiaBlue = 255;
             }
 
             // Assing sepia colour values to pixel
-            image[i][k].rgbtRed = sepiaRed;
-            image[i][k].rgbtGreen = sepiaGreen;
-            image[i][k].rgbtBlue = sepiaBlue ;
+            image[i][k].rgbtRed = round(sepiaRed);
+            image[i][k].rgbtGreen = round(sepiaGreen);
+            image[i][k].rgbtBlue = round(sepiaBlue);
         }
     }
     return;
