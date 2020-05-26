@@ -71,7 +71,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     // Loop over each pixel on the left-hand side of the image
         for (int i = 0; i < height; i++)
         {
-            for (int k = 0; k <= (width-1)/2; k++)
+            for (int k = 0; k < width/2; k++)
             {
                 // Calculate width of reflected pixel
                 int newk = width - k - 1;
