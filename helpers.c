@@ -134,31 +134,43 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             float Blue = (float) imagetemp[i][k].rgbtBlue;
 
             // Add all neighbouring pixels within image bounds
+            if (i != 0)
+            {
+                Red += (float) imagetemp[i - 1][k].rgbtRed;
+                Green += (float) imagetemp[i - 1][k].rgbtGreen;
+                Blue += (float) imagetemp[i - 1][k].rgbtBlue;
+            }
+            
+            if ( k != 0)
+            {
+                Red += (float) imagetemp[i][k - 1].rgbtRed;
+                Green += (float) imagetemp[i][k - 1].rgbtGreen;
+                Blue += (float) imagetemp[i][k - 1].rgbtBlue;
+            }            
+            
             if (i != 0 && k != 0)
             {
                 Red += (float) imagetemp[i - 1][k - 1].rgbtRed;
                 Green += (float) imagetemp[i - 1][k - 1].rgbtGreen;
                 Blue += (float) imagetemp[i - 1][k - 1].rgbtBlue;
-
-                Red += (float) imagetemp[i - 1][k].rgbtRed;
-                Green += (float) imagetemp[i - 1][k].rgbtGreen;
-                Blue += (float) imagetemp[i - 1][k].rgbtBlue;
-
-                Red += (float) imagetemp[i][k - 1].rgbtRed;
-                Green += (float) imagetemp[i][k - 1].rgbtGreen;
-                Blue += (float) imagetemp[i][k - 1].rgbtBlue;
             }
 
-            if (i != (height - 1) && k != (width - 1))
+            if (i != (height - 1))
+            {
+                Red += (float) imagetemp[i + 1][k].rgbtRed;
+                Green += (float) imagetemp[i + 1][k].rgbtGreen;
+                Blue += (float) imagetemp[i + 1][k].rgbtBlue;
+            }
+            
+            if (k != (width - 1))
             {
                 Red += (float) imagetemp[i][k + 1].rgbtRed;
                 Green += (float) imagetemp[i][k + 1].rgbtGreen;
                 Blue += (float) imagetemp[i][k + 1].rgbtBlue;
-
-                Red += (float) imagetemp[i + 1][k].rgbtRed;
-                Green += (float) imagetemp[i + 1][k].rgbtGreen;
-                Blue += (float) imagetemp[i + 1][k].rgbtBlue;
-
+            }
+            
+            if (i != (height - 1) && k != (width - 1))
+            {
                 Red += (float) imagetemp[i + 1][k + 1].rgbtRed;
                 Green += (float) imagetemp[i + 1][k + 1].rgbtGreen;
                 Blue += (float) imagetemp[i + 1][k + 1].rgbtBlue;
