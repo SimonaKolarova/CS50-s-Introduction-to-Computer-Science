@@ -81,5 +81,5 @@ int main(int argc, char *argv[])
             fwrite(buffer, sizeof(BYTE), 512, img);
         }
     }
-    free (filename);
+    free(filename);
 }
