@@ -26,12 +26,13 @@ node *table[N];
 // Initialise a dictionary size and bool for correct dictionary loading
 int dict_size = 0;
 bool dict_load = false;
+FILE* dict = NULL;
 
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
     // Open dictionary file
-    FILE *dict = fopen(dictionary, "r");
+    dict = fopen(dictionary, "r");
 
     // Check if dictionary opened
     if (dict == NULL)
@@ -161,5 +162,6 @@ bool unload(void)
             free(tmp2);
         }
     }
+    fclose(dict);
     return true;
 }
