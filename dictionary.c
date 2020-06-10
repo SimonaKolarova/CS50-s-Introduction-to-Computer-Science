@@ -59,19 +59,19 @@ bool load(const char *dictionary)
         // Initialize the new node
         strcpy(newnode->word, dict_word);
         newnode->next = NULL;
-
+        //printf("Word inserted:%s \n",newnode->word);
         // Update hash table with new node
         if (table[x] == NULL)
         {
             table[x] = newnode;
-            free(newnode);
+            //free(newnode);
             // printf("Node created\n");
         }
         else if (table[x] != NULL)
         {
             newnode->next = table[x];
             table[x] = newnode;
-            free(newnode);
+            //free(newnode);
             // printf("Node inserted\n");
         }
         dict_size++;
@@ -119,19 +119,26 @@ bool check(const char *word)
     // Obtain a hash value for word and go to corresponding linked list
     int y = hash(word);
     node* cursor = table[y];
+    
     while (cursor != NULL)
     {
+       // printf("Current cursor: word - %s ; pointer - %p   \n",cursor->word,cursor->next);
         // Case-insensitive comparison
         if (strcasecmp(word, cursor->word) == 0)
         {
             return true;
         }
-    
-    // If there is a next node - check it
-    else if (cursor->next != NULL)
-    {
-         cursor = cursor->next;
-    }
+
+        // If there is a next node - check it
+        else if (cursor->next != NULL)
+        {
+            
+            cursor = cursor->next;
+
+
+        } else {
+            cursor = NULL;
+        }
     }
     return false;
 }
