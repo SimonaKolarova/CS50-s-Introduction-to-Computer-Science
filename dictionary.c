@@ -53,8 +53,11 @@ bool load(const char *dictionary)
 
         // Dynamically allocate space for new node at hash value and check if there was enough memory to allocate it
         node *newnode = malloc(sizeof(node));
-        if (newnode == NULL)
+        if (newnode == NULL) {
+          //  printf("Error: Memory not allocated for node!");
             return 1;
+        }
+            
 
         // Initialize the new node
         strcpy(newnode->word, dict_word);
