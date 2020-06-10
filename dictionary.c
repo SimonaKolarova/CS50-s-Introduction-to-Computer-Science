@@ -120,19 +120,14 @@ bool check(const char *word)
     {
         // Case-insensitive comparison
         if (strcasecmp(word, cursor->word) == 0)
-        {
             return true;
-        }
 
         // If there is a next node - check it
         else if (cursor->next != NULL)
             cursor = cursor->next;
-        //else
-            //cursor = NULL;
     }
     return false;
 }
-
 
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
@@ -148,6 +143,8 @@ bool unload(void)
             free(tmp2);
         }
     }
+    // Close dictionary
     fclose(dict);
+
     return true;
 }
