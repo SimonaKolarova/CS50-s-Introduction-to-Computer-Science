@@ -24,7 +24,7 @@ const unsigned int N = 378;
 node *table[N];
 
 // Initialise a dictionary, its size and a bool for correct dictionary loading
-FILE* dict = NULL;
+FILE *dict = NULL;
 int dict_size = 0;
 bool dict_load = false;
 
@@ -46,7 +46,7 @@ bool load(const char *dictionary)
     node *tmp = NULL;
 
     // Read one strting at a time until end of dictionary
-    while(fscanf(dict, "%s", dict_word) != EOF)
+    while (fscanf(dict, "%s", dict_word) != EOF)
     {
         // Get hash value for dictionary word
         int x = hash(dict_word);
@@ -54,8 +54,10 @@ bool load(const char *dictionary)
         // Dynamically allocate space for new node at hash value and check if there was enough memory to allocate it
         node *newnode = malloc(sizeof(node));
         if (newnode == NULL)
+        {
             return 1;
-
+        }
+        
         // Initialize the new node
         strcpy(newnode->word, dict_word);
         newnode->next = NULL;
@@ -63,8 +65,9 @@ bool load(const char *dictionary)
         // Update hash table with new node
         // If no nodes at hash value
         if (table[x] == NULL)
+        {
             table[x] = newnode;
-
+        }
         // If nodes already at hash value
         else if (table[x] != NULL)
         {
@@ -103,9 +106,13 @@ unsigned int hash(const char *word)
 unsigned int size(void)
 {
     if (dict_load == true)
+    {
         return dict_size;
+    }
     else
+    {    
         return 0;
+    }
 }
 
 // Returns true if word is in dictionary else false
@@ -113,18 +120,22 @@ bool check(const char *word)
 {
     // Obtain a hash value for word and go to corresponding linked list
     int y = hash(word);
-    node* cursor = table[y];
+    node *cursor = table[y];
 
     // Read until end of linked list
     while (cursor != NULL)
     {
         // Case-insensitive comparison
         if (strcasecmp(word, cursor->word) == 0)
+        {
             return true;
-
+        }
+        
         // If there is a next node - check it
         else if (cursor->next != NULL)
+        {
             cursor = cursor->next;
+        }
     }
     return false;
 }
@@ -135,10 +146,10 @@ bool unload(void)
     // Free any memory allocated in load
     for (int i = 0; i < N; i++)
     {
-        node* cursor = table[i];
+        node *cursor = table[i];
         while (cursor != NULL)
         {
-            node* tmp2 = cursor;
+            node *tmp2 = cursor;
             cursor = cursor->next;
             free(tmp2);
         }
