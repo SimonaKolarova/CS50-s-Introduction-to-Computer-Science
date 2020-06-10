@@ -23,10 +23,10 @@ const unsigned int N = 378;
 // Hash table
 node *table[N];
 
-// Initialise a dictionary size and bool for correct dictionary loading
+// Initialise a dictionary, its size and a bool for correct dictionary loading
+FILE* dict = NULL;
 int dict_size = 0;
 bool dict_load = false;
-FILE* dict = NULL;
 
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
@@ -50,34 +50,29 @@ bool load(const char *dictionary)
     {
         // Get hash value for dictionary word
         int x = hash(dict_word);
-        // printf("Hash value for word %s is %i\n", dict_word, x);
 
         // Dynamically allocate space for new node at hash value and check if there was enough memory to allocate it
         node *newnode = malloc(sizeof(node));
-        if (newnode == NULL) {
-          //  printf("Error: Memory not allocated for node!");
+        if (newnode == NULL)
             return 1;
-        }
-
 
         // Initialize the new node
         strcpy(newnode->word, dict_word);
         newnode->next = NULL;
-        //printf("Word inserted:%s \n",newnode->word);
+
         // Update hash table with new node
+        // If no nodes at hash value
         if (table[x] == NULL)
-        {
             table[x] = newnode;
-            //free(newnode);
-            // printf("Node created\n");
-        }
+
+        // If nodes already at hash value
         else if (table[x] != NULL)
         {
             newnode->next = table[x];
             table[x] = newnode;
-            //free(newnode);
-            // printf("Node inserted\n");
         }
+
+        // Update dictionary size
         dict_size++;
     }
 
@@ -108,13 +103,9 @@ unsigned int hash(const char *word)
 unsigned int size(void)
 {
     if (dict_load == true)
-    {
-    // Return number of words in dictionary
-    return dict_size;
-    }
-
+        return dict_size;
     else
-    return 0;
+        return 0;
 }
 
 // Returns true if word is in dictionary else false
@@ -124,9 +115,9 @@ bool check(const char *word)
     int y = hash(word);
     node* cursor = table[y];
 
+    // Read until end of linked list
     while (cursor != NULL)
     {
-       // printf("Current cursor: word - %s ; pointer - %p   \n",cursor->word,cursor->next);
         // Case-insensitive comparison
         if (strcasecmp(word, cursor->word) == 0)
         {
@@ -135,14 +126,9 @@ bool check(const char *word)
 
         // If there is a next node - check it
         else if (cursor->next != NULL)
-        {
-
             cursor = cursor->next;
-
-
-        } else {
-            cursor = NULL;
-        }
+        //else
+            //cursor = NULL;
     }
     return false;
 }
