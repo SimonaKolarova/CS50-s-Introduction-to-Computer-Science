@@ -118,18 +118,21 @@ bool check(const char *word)
 {
     // Obtain a hash value for word and go to corresponding linked list
     int y = hash(word);
-    for (node* cursor = table[y]; cursor != NULL; cursor = cursor->next)
+    node* cursor = table[y];
+    while (cursor != NULL)
     {
         // Case-insensitive comparison
         if (strcasecmp(word, cursor->word) == 0)
         {
             return true;
         }
-    }
+    
     // If there is a next node - check it
-   // else if (cursor->next != NULL)
-     //   cursor = cursor->next;
-
+    else if (cursor->next != NULL)
+    {
+         cursor = cursor->next;
+    }
+    }
     return false;
 }
 
