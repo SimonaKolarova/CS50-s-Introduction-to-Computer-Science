@@ -57,7 +57,7 @@ bool load(const char *dictionary)
           //  printf("Error: Memory not allocated for node!");
             return 1;
         }
-            
+
 
         // Initialize the new node
         strcpy(newnode->word, dict_word);
@@ -122,7 +122,7 @@ bool check(const char *word)
     // Obtain a hash value for word and go to corresponding linked list
     int y = hash(word);
     node* cursor = table[y];
-    
+
     while (cursor != NULL)
     {
        // printf("Current cursor: word - %s ; pointer - %p   \n",cursor->word,cursor->next);
@@ -135,7 +135,7 @@ bool check(const char *word)
         // If there is a next node - check it
         else if (cursor->next != NULL)
         {
-            
+
             cursor = cursor->next;
 
 
@@ -154,13 +154,11 @@ bool unload(void)
     for (int i = 0; i < N; i++)
     {
         node* cursor = table[i];
-        while (cursor->next != NULL)
+        while (cursor != NULL)
         {
             node* tmp2 = cursor;
             cursor = cursor->next;
             free(tmp2);
         }
-    free(table[i]);
     }
-    return true;
 }
