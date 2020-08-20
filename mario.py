@@ -21,7 +21,7 @@ for i in range(n):
         print("#", end="")
         
     # Print middle spaces
-    print("  ", end ="")
+    print("  ", end="")
     
     # Print n-related #
     for o in range(i+1):
