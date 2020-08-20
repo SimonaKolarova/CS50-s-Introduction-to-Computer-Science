@@ -19,9 +19,9 @@ for i in user_text:
 # Calculate the Coleman-Liau index
 CL_index = (0.0588 * 100 * letters / words) - (0.296 * 100 * sentences / words) - 15.8
 
-if CL_index >= 1 and CL_index <=16:
+if CL_index >= 1 and CL_index <= 16:
     print(f"Grade {round(CL_index)}")
-elif CL_index <1:
+elif CL_index < 1:
     print("Before Grade 1")
 else:
     print("Grade 16+")
