@@ -31,8 +31,8 @@ for i in range(STR_count):
     # For each base pair
     for k in range(len(unknown_DNA)):
 
-       # If base pairs+j = STR
-       if unknown_DNA[k:(k+j)] == STR_list[i]:
+        # If base pairs+j = STR
+        if unknown_DNA[k:(k+j)] == STR_list[i]:
             
             # Count first STR match
             if sequential_STRs[i] == 0:
@@ -63,12 +63,5 @@ for i in range(len(DNA_database) - 1):
         if sum_matches == STR_count:
             print(f"{DNA_database[i + 1][0]}")
             exit(0)
-        
 
 print("No match")
-
-
-
-
-
-
