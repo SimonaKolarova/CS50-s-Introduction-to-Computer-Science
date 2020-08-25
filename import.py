@@ -17,6 +17,7 @@ with open(argv[1], "r") as csv_input:
     db = cs50.SQL("sqlite:///students.db")
     
     # Create students table in students database
+    db.execute("DROP TABLE students")
     db.execute("CREATE TABLE students (first TEXT, middle TEXT, last TEXT, house TEXT, birth NUMERIC)")
 
     # Transfer information from CSV file into students.db
@@ -31,10 +32,12 @@ with open(argv[1], "r") as csv_input:
         if len(name) == 3:
             
             # Populate SQL students table
-            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES(?, ?, ?, ?, ?)", name[0], name[1], name[2], house, birth)
+            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES(?, ?, ?, ?, ?)", 
+                name[0], name[1], name[2], house, birth)
             
         # For students with a first and last name only
         if len(name) == 2:
         
             # Populate SQL students table
-            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES(?, ?, ?, ?, ?)", name[0], None, name[1], house, birth)
+            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES(?, ?, ?, ?, ?)", 
+                name[0], None, name[1], house, birth)
