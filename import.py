@@ -17,6 +17,7 @@ with open (argv[1], "r") as csv_input:
     db = cs50.SQL("sqlite:///students.db")
     
     # Create students table in students database
+    db.execute("DROP TABLE students")
     db.execute("CREATE TABLE students (first_name TEXT, middle_name TEXT, last_name TEXT, house TEXT, birth NUMERIC)")
 
     # Transfer information from CSV file into students.db
