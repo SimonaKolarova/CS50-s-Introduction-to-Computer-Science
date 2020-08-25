@@ -10,20 +10,19 @@ if len(argv) != 2:
 # Create a SQL database using CSV file provided
 
 # Open CSV file with name, house and birth information 
-with open (argv[1], "r") as csv_input:
+with open(argv[1], "r") as csv_input:
     reader = csv.DictReader(csv_input)
 
     # Open empty students database
     db = cs50.SQL("sqlite:///students.db")
     
     # Create students table in students database
-    db.execute("DROP TABLE students")
-    db.execute("CREATE TABLE students (first_name TEXT, middle_name TEXT, last_name TEXT, house TEXT, birth NUMERIC)")
+    db.execute("CREATE TABLE students (first TEXT, middle TEXT, last TEXT, house TEXT, birth NUMERIC)")
 
     # Transfer information from CSV file into students.db
     for row in reader: 
         
-        #For all students
+        # For all students
         name = row["name"].rsplit(' ')
         house = row["house"]
         birth = row["birth"]
@@ -32,12 +31,10 @@ with open (argv[1], "r") as csv_input:
         if len(name) == 3:
             
             # Populate SQL students table
-            db.execute("INSERT INTO students (first_name, middle_name, last_name, house, birth) VALUES(?, ?, ?, ?, ?)",
-            name[0], name[1], name[2], house, birth)
+            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES(?, ?, ?, ?, ?)", name[0], name[1], name[2], house, birth)
             
         # For students with a first and last name only
-        if len (name) == 2:
+        if len(name) == 2:
         
             # Populate SQL students table
-            db.execute("INSERT INTO students (first_name, middle_name, last_name, house, birth) VALUES(?, ?, ?, ?, ?)",
-            name[0], None, name[1], house, birth)
+            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES(?, ?, ?, ?, ?)", name[0], None, name[1], house, birth)

@@ -10,14 +10,15 @@ if len(argv) != 2:
 db = cs50.SQL("sqlite:///students.db")
 
 # Query the students table
-query_results = db.execute("SELECT first_name, middle_name, last_name, birth FROM students WHERE house = ? ORDER BY last_name ASC, first_name ASC", argv[1])
+query_results = db.execute(
+    "SELECT first, middle, last, birth FROM students WHERE house = ? ORDER BY last ASC, first ASC", argv[1])
 
 # Print the rooster
 for i in query_results:
     
     # For students with middle names:
-    if i['middle_name'] == None:
-        print(f"{i['first_name']} {i['last_name']}, born {i['birth']}")
+    if i['middle'] == None:
+        print(f"{i['first']} {i['last']}, born {i['birth']}")
     
     else:
-        print(f"{i['first_name']} {i['middle_name']} {i['last_name']}, born {i['birth']}")
+        print(f"{i['first']} {i['middle']} {i['last']}, born {i['birth']}")
