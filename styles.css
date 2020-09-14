@@ -1,0 +1,30 @@
+body {
+    background-color: #e6e6e6;
+    padding-top: 5rem;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 80px;
+}
+h1 {
+    padding: 3rem 1.5rem;
+     text-align: center;
+     color: #333333
+}
+
+h2 {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: #333333
+}
+
+h6 {
+    text-align: center;
+    color: #333333
+}
+
+.buttons {
+    color: #4d4d4d;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
