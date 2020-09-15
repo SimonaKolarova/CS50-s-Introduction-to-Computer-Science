@@ -18,7 +18,7 @@ A repository for all course work submitted for the "CS50's Introduction to Compu
 
 ### [Problem set 4](https://cs50.harvard.edu/x/2020/psets/4)
 - Filter: A program that applies a selected by the user filter (grayscale, sepia, reflection or blur) to a bitfile image (BMP) file provided by the user.
-- Recover: A program that recovers JPEGs from a "deleted" memory card provided by the user.
+- recover.c: A program that recovers JPEGs from a "deleted" memory card provided by the user.
 
 
 ### [Problem set 5](https://cs50.harvard.edu/x/2020/psets/5)
