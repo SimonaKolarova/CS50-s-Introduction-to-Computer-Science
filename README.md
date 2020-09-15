@@ -1,4 +1,4 @@
-# CS50-s-Introduction-to-Computer-Science
+# CS50's Introduction to Computer Science
 A repository for all course work submitted for the "CS50's Introduction to Computer Science" course. Visit [CS50's website](https://cs50.harvard.edu/x/2020/) for more information.
 
 ## In this branch all coursework written in C is compiled. 
