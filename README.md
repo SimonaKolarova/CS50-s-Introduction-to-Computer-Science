@@ -11,7 +11,7 @@ A repository for all course work submitted for the "CS50's Introduction to Compu
 - dna.py: A program that identifies a person based on their DNA using a DNA database.
 
 ### [Problem set 7](https://cs50.harvard.edu/x/2020/psets/7/)
-- Student houses: a program to import student data into a database, and then produce class rosters.
+- Student houses: A program to import student data into a database and then produce class rosters.
 
 ### [Web track](https://cs50.harvard.edu/x/2020/tracks/web/)
-- Finance: a website via which users can “buy” and “sell” stocks
+- Finance: A website constructed using Python Flask via which users can “buy” and “sell” stocks.
