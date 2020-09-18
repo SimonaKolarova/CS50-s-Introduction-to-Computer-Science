@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin: 25px">Look up a stock quote</h2>
+    <h5 style="margin: 15px">Please provide a New York Stock Exchange (NYSE) stock symbol.
+    <h6 style="margin: 15px">(A list of NYSE stock symbols is available
+    <a href = "http://eoddata.com/symbols.aspx" target=”_blank”>here</a>.)</h6>
+    <form action="/quote" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Stock Symbol" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Quote</button>
+    </form>
+{% endblock %}
