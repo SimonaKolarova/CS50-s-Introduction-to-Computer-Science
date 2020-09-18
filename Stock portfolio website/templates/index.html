@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock portfolio
+{% endblock %}
+
+{% block main %}
+
+    <table class= "table table-striped">
+        <thead>
+        <tr>
+            <th>Stock name</th>
+            <th>Stock Symbol</th>
+            <th>Number of shares</th>
+            <th>Stock Price</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for row in shares_data %}
+                <tr>
+                    <td>{{row["stock_name"]}}</td>
+                    <td>{{row["stock_symbol"]}}</td>
+                    <td>{{row["shares"]}}</td>
+                    <td>${{row["stock_price"]}}</td>
+                    <td>${{row["shares_value"]}}</td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td>Cash</td>
+                    <td colspan="3"></td>
+                    <td>${{user_cash}}</td>
+                </tr>
+        </tbody>
+        <tfoot>
+            <td><b>Total value</b></td>
+            <td colspan="3"></td>
+            <td>${{user_value}}</td>
+        </tfoot>
+    </table>
+
+{% endblock %}
