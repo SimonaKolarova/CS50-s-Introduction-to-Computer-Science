@@ -1,7 +1,7 @@
 # CS50's Introduction to Computer Science
 A repository for course work submitted for the ["CS50's Introduction to Computer Science"](https://cs50.harvard.edu/x/2020/) course. 
 
-## In this branch all coursework written in C is compiled. 
+## In this branch coursework written in C is compiled. 
 
 ### [Problem set 5](https://cs50.harvard.edu/x/2020/psets/5)
 - Speller: A programme that spell-checks text files (examples provided in `texts`) against a dictionary of words (provided in `dictionaries`) using a hash function.
